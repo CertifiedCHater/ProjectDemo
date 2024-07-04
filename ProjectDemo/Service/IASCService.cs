@@ -9,5 +9,5 @@ namespace ProjectDemo.Service;
 
 interface IASCService
 {
-    Task<List<Art>> GetArts();
+    Task<List<Data>> GetArts();
 }

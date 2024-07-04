@@ -4,11 +4,18 @@
              xmlns:viewModel="clr-namespace:ProjectDemo.ViewModel"
              x:Class="ProjectDemo.View.MainPage">
 
-    <CollectionView  ItemsSource="{Binding data}">
+    <CollectionView  ItemsSource="{Binding Arts}">
         <CollectionView.ItemTemplate>
             <DataTemplate>
                 <VerticalStackLayout>
                     <Label Text="{Binding title}"/>
+                    <Label Text="{Binding place_of_origin}"/>
+                    <Label Text="{Binding edition}"/>
+
+                    <VerticalStackLayout.GestureRecognizers>
+                        <TapGestureRecognizer CommandParameter="{Binding .}"
+                      Command="{Binding Source={RelativeSource AncestorType={x:Type viewModel:ArtsViewModel}}, Path=GoToDetailCommand}"/>
+                    </VerticalStackLayout.GestureRecognizers>
                 </VerticalStackLayout>
             </DataTemplate>
         </CollectionView.ItemTemplate>

@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using ProjectDemo.Model;
 using ProjectDemo.Service;
 using System;
 using System.Collections.Generic;
@@ -14,14 +15,26 @@ namespace ProjectDemo.ViewModel;
 public partial class ArtsViewModel : BaseViewModel
 {
     IASCService _ASCService;
-    public ObservableCollection<Model.Art> Arts { get; } = new();
+    public ObservableCollection<Model.Data> Arts { get; } = new();
 
     public ArtsViewModel(ASCService ASCService) 
     {
         this._ASCService = ASCService;
         Task.Run(async () => await GetArtsAsync());
     }
-    
+
+    [RelayCommand]
+    async Task GoToDetailAsync(Data detail)
+    {
+        if (detail is null)
+            return;
+        await Shell.Current.GoToAsync($"{nameof(View.DetailPage)}", true,
+             new Dictionary<string, object>
+             {
+                {"ArtDetail", detail},
+             });
+    }
+
     [RelayCommand]
     async Task GetArtsAsync()
     {

@@ -29,7 +29,7 @@ public class Contexts
     public List<string> groupings { get; set; }
 }
 
-public class Data
+public partial class Data
 {
     public int id { get; set; }
     public string api_model { get; set; }

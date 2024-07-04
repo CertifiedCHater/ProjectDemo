@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+using Microsoft.Extensions.Logging;
 using ProjectDemo.Service;
 using ProjectDemo.View;
 using ProjectDemo.ViewModel;
@@ -24,8 +25,10 @@ namespace ProjectDemo
             builder.Services.AddSingleton<ASCService>();
 
             builder.Services.AddSingleton<MainPage>();
+            builder.Services.AddTransient<DetailPage>();
 
             builder.Services.AddSingleton<ArtsViewModel>();
+            builder.Services.AddTransient<ArtDetailViewModel>();
 
             return builder.Build();
         }
